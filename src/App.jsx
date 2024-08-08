@@ -24,16 +24,16 @@ const App = () => {
     navigate('/tracks')
   }
 
-  // const handlePlayTrack = (track) => {
-  //   setCurrentTrack(track);
-  // }
+  const handlePlayTrack = (track) => {
+    setCurrentTrack(track);
+  }
 
-  // const handleDeleteTrack = async (trackId) => {
-  //   await trackService.del(trackId);
-  //   setTracks(tracks.filter(track => 
-  //     track._id !== trackId
-  //   ));
-  // }
+  const handleDeleteTrack = async (trackId) => {
+    await trackService.del(trackId);
+    setTracks(tracks.filter(track => 
+      track._id !== trackId
+    ));
+  }
 
   return (
     <>
