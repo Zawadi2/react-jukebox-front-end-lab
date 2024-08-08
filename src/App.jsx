@@ -2,8 +2,9 @@ import * as trackService from './services/trackService'
 import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import TrackForm from './components/TrackForm';
-import NowPlaying from './components/NowPlaying';
+import NowPlaying from './components/NowPlaying'
 import TrackList from './components/TrackList';
+
 
 
 const App = () => {
@@ -25,6 +26,13 @@ const App = () => {
     setTracks([newTrack, ...tracks])
     navigate('/tracks')
   }
+
+  const handleUpdateTrack = async (trackId, trackFormData) => {
+    const updatedTrack = await trackService.update(trackId, trackFormData)
+    setTracks(tracks.map((track) => (trackId === track._id ? updatedTrack : track)))
+    navigate('/tracks')
+  }
+
   const handlePlayTrack = (track) => {
     setCurrentTrack(track);
   }
@@ -42,7 +50,12 @@ const App = () => {
       <NowPlaying track={currentTrack} />
       <Routes>
         <Route path="/tracks/add-track" element={<TrackForm handleAddTrack={handleAddTrack} />} />
+<<<<<<< HEAD
         <Route path="/tracks" element={<TrackList tracks={tracks} setTracks={setTracks} handleDeleteTrack={handleDeleteTrack}/>} />    
+=======
+        <Route path="/tracks" element={<TrackList tracks={tracks} setTracks={setTracks} />} />
+        <Route path="/tracks/edit-track/:trackId" element={<TrackForm handleUpdateTrack={handleUpdateTrack} />} />
+>>>>>>> origin
       </Routes>
     </>
   )
