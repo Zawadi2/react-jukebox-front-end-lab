@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
 
-const TrackList = ({alltracks /* assuming the alltracks is passed from parent*/}) => {
+const TrackList = ({tracks /* assuming the alltracks is passed from parent*/}) => {
     return (
-        <div> {alltracks.map(track => ( 
+        <div> {tracks.map(track => ( 
             <div key={track._id}>
                 <h1>{track.title}</h1>
                 <h4>By: {track.artist}</h4>
