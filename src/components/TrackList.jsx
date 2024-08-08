@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 
+
 const TrackList = ({tracks /* assuming the alltracks is passed from parent*/}) => {
     return (
         <div> {tracks.map(track => ( 
@@ -7,7 +8,7 @@ const TrackList = ({tracks /* assuming the alltracks is passed from parent*/}) =
                 <h1>{track.title}</h1>
                 <h4>By: {track.artist}</h4>
                 
-                <Link to={`/edit/${track._id}`}> <button>Edit Track</button></Link>
+                <Link to={`/edit-track/${track._id}`}> <button>Edit Track</button></Link>
                 <button onClick={()=>props.handlePlayTrack(track)}>Play Now</button>
             </div>))};
         </div>
