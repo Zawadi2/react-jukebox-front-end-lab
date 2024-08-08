@@ -17,13 +17,13 @@ const TrackForm = (props) => {
         setFormData({ title: '', artist: '' })
     }
 
-    // useEffect(() => {
-    //     const fetchTrack = async () => {
-    //         const trackData = await trackService.show(trackId)
-    //         setFormData(trackData)
-    //     }
-    //     if (trackId) fetchTrack()
-    // }, [trackId])
+    useEffect(() => {
+        const fetchTrack = async () => {
+            const trackData = await trackService.show(trackId)
+            setFormData(trackData)
+        }
+        if (trackId) fetchTrack()
+    }, [trackId])
 
     return (
         <form onSubmit={handleSubmit}>
@@ -32,7 +32,7 @@ const TrackForm = (props) => {
               required
               type="text"
               name="title"
-              id="title-input"
+              id="title"
               value={formData.title}
               onChange={handleChange}
             />
@@ -42,7 +42,7 @@ const TrackForm = (props) => {
               required
               type="text"
               name="artist"
-              id="artist-input"
+              id="artist"
               value={formData.artist}
               onChange={handleChange}
             />
