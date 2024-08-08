@@ -8,12 +8,16 @@ import TrackList from './components/TrackList';
 
 const App = () => {
   const [tracks, setTracks] = useState([])
+  const [currentTrack, setCurrentTrack] = useState(null);
   const navigate = useNavigate()
 
   const handleAddTrack = async (trackFormData) => {
     const newTrack = await trackService.create(trackFormData)
     setTracks([newTrack, ...tracks])
     navigate('./tracks')
+  }
+  const handlePlayTrack = (track) => {
+    setCurrentTrack(track);
   }
 
   const handleDeleteTrack = async (trackId) => {
@@ -28,13 +32,11 @@ const App = () => {
   -- also prolly will need to make an api update request to update the db??? */}
   return (
     <>
-      <TrackList handleDeleteTrack={handleDeleteTrack} tracks={tracks} setTracks={setTracks} />
-      
       <Routes>
+        <NowPlaying track={currentTrack} />
         <Route path="/tracks/add-track" element={<TrackForm handleAddTrack={handleAddTrack} />} />
         <Route path="/tracks" element={<TrackList tracks={tracks} setTracks={setTracks} />} />
       </Routes>
-      
     </>
   )
 };
