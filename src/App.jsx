@@ -1,5 +1,5 @@
 import * as trackService from './services/trackService'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import TrackForm from './components/TrackForm';
 import NowPlaying from './components/NowPlaying';
@@ -10,11 +10,20 @@ const App = () => {
   const [tracks, setTracks] = useState([])
   const [currentTrack, setCurrentTrack] = useState(null);
   const navigate = useNavigate()
+  // getting all the tracks from db
+  useEffect(() => {
+    const getAllTracks = async () => {
+      const allTracksOnDB = await trackService.fetchAllTracks();
+      setTracks(allTracksOnDB);
+    };
+    getAllTracks();
+  }, []);
+
 
   const handleAddTrack = async (trackFormData) => {
     const newTrack = await trackService.create(trackFormData)
     setTracks([newTrack, ...tracks])
-    navigate('./tracks')
+    navigate('/tracks')
   }
   const handlePlayTrack = (track) => {
     setCurrentTrack(track);
@@ -27,15 +36,13 @@ const App = () => {
     ));
   }
 
-  const handleUpdateTrack = () => {}
-  {/* need to add an edit route and a function to handle update of the track
-  -- also prolly will need to make an api update request to update the db??? */}
   return (
     <>
+      <h1>Welcome</h1>
+      <NowPlaying track={currentTrack} />
       <Routes>
-        <NowPlaying track={currentTrack} />
         <Route path="/tracks/add-track" element={<TrackForm handleAddTrack={handleAddTrack} />} />
-        <Route path="/tracks" element={<TrackList tracks={tracks} setTracks={setTracks} />} />
+        <Route path="/tracks" element={<TrackList tracks={tracks} setTracks={setTracks} handleDeleteTrack={handleDeleteTrack}/>} />    
       </Routes>
     </>
   )
