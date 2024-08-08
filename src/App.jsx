@@ -2,6 +2,7 @@ import * as trackService from './services/trackService'
 import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import TrackForm from './components/TrackForm';
+import NowPlaying from './NowPlaying';
 
 const App = () => {
   const [tracks, setTracks] = useState([])
@@ -21,5 +22,6 @@ const App = () => {
     </>
   )
 };
+
 
 export default App;
