@@ -50,12 +50,8 @@ const App = () => {
       <NowPlaying track={currentTrack} />
       <Routes>
         <Route path="/tracks/add-track" element={<TrackForm handleAddTrack={handleAddTrack} />} />
-<<<<<<< HEAD
-        <Route path="/tracks" element={<TrackList tracks={tracks} setTracks={setTracks} handleDeleteTrack={handleDeleteTrack}/>} />    
-=======
         <Route path="/tracks" element={<TrackList tracks={tracks} setTracks={setTracks} />} />
         <Route path="/tracks/edit-track/:trackId" element={<TrackForm handleUpdateTrack={handleUpdateTrack} />} />
->>>>>>> origin
       </Routes>
     </>
   )
