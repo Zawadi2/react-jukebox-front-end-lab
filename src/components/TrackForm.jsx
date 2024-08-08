@@ -13,7 +13,11 @@ const TrackForm = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        props.handleAddTrack(formData)
+        if(trackId) {
+            props.handleUpdateTrack(trackId, formData)
+        } else {
+            props.handleAddTrack(formData)
+        }
         setFormData({ title: '', artist: '' })
     }
 
