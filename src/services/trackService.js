@@ -1,19 +1,6 @@
 
 const BASE_URL = `${import.meta.env.VITE_EXPRESS_BACKEND_URL}/tracks`
 
-// const index = async () => {
-//     try {
-//         const res = await fetch(BASE_URL, {
-//             headers: {
-//                 'Content-Type' : 'application/json'
-//             }
-//         })
-//         return res.json()
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
 const create = async (trackFormData) => {
     try {
         const res = await fetch(BASE_URL, {
@@ -47,10 +34,18 @@ async function update(trackId, trackFormData) {
 
 const fetchAllTracks = async () => {
     try {
-        const res = await fetch(BASE_URL);
-        return res.json();
+        const res = await fetch(BASE_URL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json', 
+            }
+        });
+
+        const trackdata = await res.json();
+        return trackdata.tracks;
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        return [];
     }
     
 }
