@@ -23,7 +23,7 @@ const TrackList = ({ handleDeleteTrack, handlePlayTrack }) => {
         };
         getAllTracks();
       }, []);
-
+  
     return (
         <div><h1>Community Tracks</h1>
             {tracks.length === 0 ? (<p>The community has not added any songs yet</p>) 
@@ -38,8 +38,9 @@ const TrackList = ({ handleDeleteTrack, handlePlayTrack }) => {
                     </li>
                 ))};</ul>
             )}
+
         </div>
     )
-}
+};
 
 export default TrackList;

@@ -45,7 +45,9 @@ const App = () => {
       <NowPlaying track={currentTrack} />
       <Routes>
         <Route path="/tracks/add-track" element={<TrackForm handleAddTrack={handleAddTrack} />} />
+
         <Route path="/tracks" element={<TrackList handlePlayTrack={handlePlayTrack} handleDeleteTrack={handleDeleteTrack}/>} />    
+
         <Route path="/tracks/edit-track/:trackId" element={<TrackForm handleUpdateTrack={handleUpdateTrack} />} />
       </Routes>
     </>
