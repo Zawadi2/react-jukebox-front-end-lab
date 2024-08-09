@@ -2,6 +2,7 @@ import * as React from 'react';
 
 
 const NowPlaying = ({ track }) => {
+  if(!track) return <div>There is nothing playing right now</div>
   return (
     <>
     <div>
