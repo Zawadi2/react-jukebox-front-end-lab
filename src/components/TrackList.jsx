@@ -20,6 +20,6 @@ const TrackList = ({tracks /* assuming the alltracks is passed from parent*/}) =
             </div>))};
         </div>
     )
-}
+};
 
 export default TrackList;
