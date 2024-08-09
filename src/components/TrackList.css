@@ -1,0 +1,46 @@
+.track-container {
+    padding: 10px;
+    background-color: #2c2626;
+    text-align: center;
+}
+
+.alltracks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.track-body {
+    list-style-type: none;
+    padding: 2px;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.track-details {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 1);
+}
+
+.track-text {
+    color: red;
+}
+.artist-text {
+    color: rgb(255, 243, 243);
+}
+
+.delete-btn {
+    border: 2px solid rgba(255, 0, 0, 0.4);
+}
+
+button {
+    margin: 10px 0;
+}

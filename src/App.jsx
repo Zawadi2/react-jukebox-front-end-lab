@@ -1,4 +1,5 @@
 import * as trackService from './services/trackService'
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import TrackForm from './components/TrackForm';
@@ -11,7 +12,9 @@ const App = () => {
   const navigate = useNavigate()
   // getting all the tracks from db
   
-
+  useEffect(() => {
+    navigate('/tracks');
+  }, [navigate]);
 
   const handleAddTrack = async (trackFormData) => {
     const newTrack = await trackService.create(trackFormData)
@@ -42,12 +45,14 @@ const App = () => {
   return (
     <>
       <h1>Welcome</h1>
-      <NowPlaying track={currentTrack} />
+      
+      <Link to="/tracks/add-track"><button style={{ backgroundColor: 'rgba(255, 16, 0, 0.7)'}}>Add New Track</button></Link>
       <Routes>
         <Route path="/tracks/add-track" element={<TrackForm handleAddTrack={handleAddTrack} />} />
         <Route path="/tracks" element={<TrackList handlePlayTrack={handlePlayTrack} handleDeleteTrack={handleDeleteTrack}/>} />    
         <Route path="/tracks/edit-track/:trackId" element={<TrackForm handleUpdateTrack={handleUpdateTrack} />} />
       </Routes>
+      <NowPlaying track={currentTrack} />
     </>
   )
 };

@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import * as trackService from '../services/trackService';
+import './TrackList.css';
 
 const TrackList = ({ handleDeleteTrack, handlePlayTrack }) => {
     const [tracks, setTracks] = useState([]);
@@ -25,18 +26,20 @@ const TrackList = ({ handleDeleteTrack, handlePlayTrack }) => {
       }, []);
 
     return (
-        <div><h1>Community Tracks</h1>
+        <div className='track-container'><h1>Community Tracks</h1>
             {tracks.length === 0 ? (<p>The community has not added any songs yet</p>) 
              : (
-                <ul>{tracks.map((track) => (
-                    <li key={track._id}>
-                        <h4>{track.title}</h4>
-                        <p>By: {track.artist}</p>
-                        <Link to={`/tracks/edit-track/${track._id}`}> <button>Edit Track</button></Link>
-                        <button onClick={()=>handleDeleteTrack(track._id)}>Delete Track</button>
+                <div className='alltracks'>
+                  <ul className='track-body'>{tracks.map((track) => (
+                    <li key={track._id} className='track-details'>
+                        <p className='track-text'><span className='artist-text'>{track.title} by</span> {track.artist}</p>
                         <button onClick={() => handlePlayTrack(track)}>Play</button>
+                        <Link to={`/tracks/edit-track/${track._id}`}> <button>Edit Track</button></Link>
+                        <button onClick={()=>handleDeleteTrack(track._id)} className='delete-btn'>Delete Track</button>
+                        
                     </li>
-                ))};</ul>
+                  ))}</ul>
+          </div>
             )}
         </div>
     )
