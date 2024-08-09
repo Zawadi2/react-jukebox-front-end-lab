@@ -3,27 +3,8 @@ import { useEffect, useState } from 'react'
 import * as trackService from '../services/trackService';
 import './TrackList.css';
 
-const TrackList = ({ handleDeleteTrack, handlePlayTrack }) => {
-    const [tracks, setTracks] = useState([]);
-    useEffect(() => {
-        const getAllTracks = async () => {
-          try {
-            const allTracksOnDB = await trackService.fetchAllTracks();
-            console.log(allTracksOnDB);
-            
-            if (Array.isArray(allTracksOnDB)) {
-                setTracks(allTracksOnDB);
-            }
-            else {
-                console.log('Not what I wanted to return');
-            }
-  
-          } catch (e) {
-            console.log('error', e)
-          } 
-        };
-        getAllTracks();
-      }, []);
+
+const TrackList = ({handleDeleteTrack, handlePlayTrack}) => {
 
     return (
         <div className='track-container'><h1>Community Tracks</h1>

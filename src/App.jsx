@@ -6,6 +6,8 @@ import TrackForm from './components/TrackForm';
 import NowPlaying from './components/NowPlaying'
 import TrackList from './components/TrackList';
 
+
+
 const App = () => {
   const [tracks, setTracks] = useState([])
   const [currentTrack, setCurrentTrack] = useState(null);
@@ -21,27 +23,21 @@ const App = () => {
     setTracks([newTrack, ...tracks])
     navigate('/tracks')
   }
-
   const handleUpdateTrack = async (trackId, trackFormData) => {
     const updatedTrack = await trackService.update(trackId, trackFormData)
     setTracks(tracks.map((track) => (trackId === track._id ? updatedTrack : track)))
     navigate('/tracks')
   }
-
   const handlePlayTrack = (track) => {
     setCurrentTrack(track);
   }
-
   const handleDeleteTrack = async (trackId) => {
     await trackService.del(trackId);
-    const updatedTracks = tracks.filter(track => track._id !== trackId);
-    setTracks(updatedTracks);
-    // when button is clicked, changes wont show up until i refresh the page
-    // so I am forcing a page refresh right after the handleDeletetrack is called
-    // just keeps the interface updated and maybe there is a smarter way to do this?
+    setTracks(tracks.filter(track => 
+      track._id !== trackId
+    ));
     window.location.reload();
   }
-
   return (
     <>
       <h1>Welcome</h1>
@@ -54,8 +50,6 @@ const App = () => {
       </Routes>
       <NowPlaying track={currentTrack} />
     </>
-  )
+  );
 };
-
-
 export default App;
